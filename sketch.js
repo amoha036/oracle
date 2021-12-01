@@ -30,5 +30,6 @@ function setup() {
 
 function draw() {
   background(220);
+  img.resize(width, height);
   image(img, width/2, height/2)
 }
