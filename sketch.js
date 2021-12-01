@@ -13,7 +13,7 @@ function loaded(){
   var name = "j-"+round(d)+".jpg"
   console.log(name)
   img = loadImage(name)
-  img.resize(0, height)
+ 
   
  
 }
@@ -30,6 +30,6 @@ function setup() {
 
 function draw() {
   background(220);
-  img.resize(width, height);
-  image(img, width/2, height/2)
+ var scale = 1;
+  image(img, width/2, height/2, scale*width, scale*img.height*width/imag.width);
 }
