@@ -31,5 +31,5 @@ function setup() {
 function draw() {
   background(220);
  var scale = 1;
-  image(img, width/2, height/2, scale*width, scale*img.height*width/imag.width);
+  image(img, width/2, height/2, scale*width, scale*img.height*width/img.width);
 }
