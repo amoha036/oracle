@@ -25,6 +25,7 @@ function reload(){
 function setup() {
   createCanvas(windowWidth, windowHeight);
   imageMode(CENTER)
+  background(0);
   // img = loadImage(name)
 }
 
