@@ -10,7 +10,7 @@ function loaded(){
   console.log(data.data[0])
   let d = map(data.data[0], 0, 255, 0, 100)
   
-  var name = "/images/j-"+round(d)+".jpg"
+  var name = "images/j-"+round(d)+".jpg"
   console.log(name)
   img = loadImage(name)
   img.resize(0, height)
