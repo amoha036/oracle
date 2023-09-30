@@ -1,36 +1,34 @@
-var data
-var img
+const translate = (x) => Math.round((100 / 255) * x);
 
-function preload() {
-  data = loadJSON('https://qrng.anu.edu.au/API/jsonI.php?length=10&type=uint8', loaded);
+const to_image_name = (number) => `j-${number}.jpg`;
+
+const call = async () => {
+  const url = new URL('https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8');
+  const response = await fetch(url);
+  const json = await response.json();
+  if (!json.success) {
+    throw new Error("API Failure", { cause: json });
+  }
+  return json.data[0];
 }
 
-function loaded(){
-  
-  console.log(data.data[0])
-  let d = map(data.data[0], 0, 255, 0, 100)
-  
-  var name = "j-"+round(d)+".jpg"
-  console.log(name)
-  img = loadImage(name)
- 
-  
- 
+const load = (image_name) => {
+  let img = document.querySelector('img');
+  if (!img) {
+    img = document.createElement('img')
+    document.querySelector('main').replaceChildren(img);
+  }
+  img.src = image_name; 
 }
 
-function reload(){
-  data = loadJSON('https://qrng.anu.edu.au/API/jsonI.php?length=10&type=uint8', loaded);
+const reading = async () => {
+  const data = await call();
+  const number = translate(data, 0, 100);
+  load(to_image_name(number));
 }
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  imageMode(CENTER)
-  background(0);
-  // img = loadImage(name)
+const main = () => {
+  reading();
 }
 
-function draw() {
-  background(220);
- var scale = 1;
-  image(img, width/2, height/2, scale*width, scale*img.height*width/img.width);
-}
+main();
