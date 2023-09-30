@@ -1,3 +1,5 @@
+import { notify } from './broadcast.js';
+
 const translate = (x) => Math.round((100 / 255) * x);
 
 const to_image_name = (number) => `j-${number}.jpg`;
@@ -25,6 +27,7 @@ const reading = async () => {
   const data = await call();
   const number = translate(data, 0, 100);
   load(to_image_name(number));
+  notify(number);
 }
 
 const main = () => {
