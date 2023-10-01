@@ -2,7 +2,7 @@ import { notify } from './broadcast.js';
 
 const translate = (x) => Math.round((100 / 255) * x);
 
-const to_image_name = (number) => `j-${number}.jpg`;
+const to_image_name = (tarot) => `j-${tarot}.jpg`;
 
 const call = async () => {
   const url = new URL('https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8');
@@ -23,15 +23,29 @@ const load = (image_name) => {
   img.src = image_name; 
 }
 
+const show = (tarot) => {
+  load(to_image_name(tarot));
+}
+
 const reading = async () => {
   const data = await call();
-  const number = translate(data, 0, 100);
-  load(to_image_name(number));
-  notify(number);
+  const tarot = translate(data, 0, 100);
+  show(tarot);
+  notify(tarot);
+}
+
+const location_to_tarot = () => {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("t");
 }
 
 const main = () => {
-  reading();
+  const tarot = location_to_tarot();
+  if(tarot) {
+    show(tarot);
+  } else {
+    reading();
+  }
 }
 
 main();
