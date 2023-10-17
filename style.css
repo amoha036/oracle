@@ -4,13 +4,17 @@ html, body {
   background-color: #010101;
 }
 
-h1, h2 {
+h1, h2, label {
   color: white;
 }
 
 img {
   width: 100%;
   height: auto;
+}
+
+.free, form {
+  display: none;
 }
 
 .preview {
