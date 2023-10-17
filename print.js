@@ -1,4 +1,5 @@
 import { receiver } from './broadcast.js';
+import { location_to_tarot, to_image_name } from './lib.js';
 
 let current_tarot;
 
@@ -6,11 +7,7 @@ const set_tarot = (tarot) => {
   current_tarot = tarot;
   document.querySelector('button').disabled = false;
   document.querySelector('h2').replaceChildren(`Current Tarot: ${tarot}`);
-}
-
-const location_to_tarot = () => {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("t");
+  document.querySelector('img').src = `./${to_image_name(tarot)}`;
 }
 
 function set_print() {

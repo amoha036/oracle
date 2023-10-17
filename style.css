@@ -12,3 +12,8 @@ img {
   width: 100%;
   height: auto;
 }
+
+.preview {
+  max-width: 680px;
+  height: auto;
+}
