@@ -1,4 +1,4 @@
-export const to_image_name = (tarot) => Number.parseInt(tarot) === 0 ? 'j-.jpg' : `j-${tarot}.jpg`;
+export const to_image_name = (tarot) => `j-${tarot}.jpg`;
 
 const register = async () => {
   try {
