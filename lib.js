@@ -2,7 +2,8 @@ export const to_image_name = (tarot) => Number.parseInt(tarot) === 0 ? 'j-.jpg' 
 
 const register = async () => {
   try {
-    const registration = await navigator.serviceWorker.register("/sworker.js", { scope: "/", type: "module" });
+    const scope = window.location.pathname; // This assumes the page will be an index.html page.
+    const registration = await navigator.serviceWorker.register("sworker.js", { scope, type: "module" });
     switch (true) {
       case !!registration.installing: 
         console.info("service worker installing");
