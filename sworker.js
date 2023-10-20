@@ -17,9 +17,9 @@ const fetchCache = async (request) => {
 }
 
 const get_image_names = () => {
-  const total = 101;
+  const total = 100;
   const image_names = [];
-  for (let n = 0; n < total; n++) {
+  for (let n = 1; n <= total; n++) {
     image_names.push(`./${to_image_name(n)}`);
   }
   return image_names;
